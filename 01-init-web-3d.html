@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>绘制立方体</title>
+  <script src="./three.min.js"></script>
+</head>
+
+<body>
+  <script>
+    /**
+    01 场景 
+    02 相机： 分类 位置
+    03 渲染器：大小 颜色
+    04 几何体：
+    */
+    const scene = new THREE.Scene()
+    // 参数：视角 纵横比  近裁面 远裁面
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000)
+    //初始化场景
+    const renderer = new THREE.WebGLRenderer({
+      //抗锯齿属性
+      antialias: true
+    })
+    //场景添加颜色和设置大小
+    renderer.setClearColor(0xffffff)
+    renderer.setSize(window.innerWidth, window.innerHeight)
+
+    document.body.appendChild(renderer.domElement)
+    //创建几何体
+    const geometry = new THREE.BoxGeometry(1, 1, 1)
+    //添加材质
+    const material = new THREE.MeshBasicMaterial({
+      color: 0x285b41,
+      //只展示线条
+      wireframe: true
+    })
+    //给集合体添加材质
+    const cube = new THREE.Mesh(geometry, material)
+    scene.add(cube)
+    //调整物体位置让物体能成功展示
+    camera.position.z = 4
+  //让物体旋转
+    function animate() {
+      //让帧率与刷新率匹配
+      requestAnimationFrame(animate)
+      cube.rotation.y += 0.01
+      cube.rotation.x += 0.01
+      //渲染几何体
+      renderer.render(scene, camera)
+    }
+
+    animate()
+
+  </script>
+</body>
+
+</html>
