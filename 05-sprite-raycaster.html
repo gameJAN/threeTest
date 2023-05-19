@@ -69,6 +69,7 @@
     function initCamera() {
       camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000)
       camera.position.set(0, 0, 15)
+      //移动
       controls = new THREE.TrackballControls(camera, renderer.domElement)
     }
 
@@ -76,6 +77,7 @@
     function initMesh() {
 
       // const map = new THREE.TextureLoader().load('img/icon.png')
+      //精灵材质
       // const material = new THREE.SpriteMaterial({ map: map, color: 0xffffff })
       // const sprite = new THREE.Sprite(material)
       // scene.add(sprite)
